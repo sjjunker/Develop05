@@ -27,3 +27,4 @@
 /Users/sandijunker/Library/Mobile Documents/com~apple~CloudDocs/Visual Studio Projects/cse270/Develop05/obj/Debug/net7.0/Develop05.pdb
 /Users/sandijunker/Library/Mobile Documents/com~apple~CloudDocs/Visual Studio Projects/cse270/Develop05/obj/Debug/net7.0/Develop05.genruntimeconfig.cache
 /Users/sandijunker/Library/Mobile Documents/com~apple~CloudDocs/Visual Studio Projects/cse270/Develop05/obj/Debug/net7.0/ref/Develop05.dll
+/Users/sandijunker/Library/Mobile Documents/com~apple~CloudDocs/Visual Studio Projects/cse270/Develop05/obj/Debug/net7.0/Develop05.sourcelink.json

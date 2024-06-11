@@ -32,19 +32,10 @@ public class GoalManager
         int menuChoice = 0;
         do
         {
-            //Menu
-            Console.WriteLine("Welcome To Eternal Quest");
-            Console.WriteLine("Please choose from the following options");
-            Console.WriteLine("1 - Create New Goal");
-            Console.WriteLine("2 - List Goals");
-            Console.WriteLine("3 - Save Goals");
-            Console.WriteLine("4 - Load Goals");
-            Console.WriteLine("5 - Record Event");
-            Console.WriteLine("6 - Quit");
-            Console.WriteLine($"Your current score is {_score}");
-            Console.WriteLine($"Level: {DetermineLevel(_score)}");
-
-            menuChoice = int.Parse(Console.ReadLine());
+            //Display the menu and get the user's choice
+            Menu newMenu = new Menu();
+            newMenu.DisplayMenu(_score, DetermineLevel(_score));
+            menuChoice = newMenu.GetMenuChoice();
 
             switch (menuChoice)
             {
@@ -81,14 +72,14 @@ public class GoalManager
     }
     public void ListGoalNames()
     {
-        foreach(Goal goal in _goals)
+        foreach (Goal goal in _goals)
         {
             Console.WriteLine(goal.GetName());
         }
     }
     public void ListGoalDetails()
     {
-        foreach(Goal goal in _goals)
+        foreach (Goal goal in _goals)
         {
             string details = goal.GetDetailsString();
             Console.WriteLine(details);
@@ -105,54 +96,54 @@ public class GoalManager
         int goalChoice = int.Parse(Console.ReadLine());
 
         switch (goalChoice)
-                    {
-                        case 1:
-                            //Get input
-                            Console.WriteLine("What is the name of your goal?");
-                            string name = Console.ReadLine();
-                            Console.WriteLine("What is a short description of it?");
-                            string description = Console.ReadLine();
-                            Console.WriteLine("How many points is it worth?");
-                            int points = int.Parse(Console.ReadLine());
-                            
-                            //Create a simple goal
-                            SimpleGoal newSimpleGoal = new SimpleGoal(name, description, points);
-                            _goals.Add(newSimpleGoal);
+        {
+            case 1:
+                //Get input
+                Console.WriteLine("What is the name of your goal?");
+                string name = Console.ReadLine();
+                Console.WriteLine("What is a short description of it?");
+                string description = Console.ReadLine();
+                Console.WriteLine("How many points is it worth?");
+                int points = int.Parse(Console.ReadLine());
 
-                            break;
-                        case 2:
-                            //Get input
-                            Console.WriteLine("What is the name of your goal?");
-                            name = Console.ReadLine();
-                            Console.WriteLine("What is a short description of it?");
-                            description = Console.ReadLine();
-                            Console.WriteLine("How many points is it worth?");
-                            points = int.Parse(Console.ReadLine());
+                //Create a simple goal
+                SimpleGoal newSimpleGoal = new SimpleGoal(name, description, points);
+                _goals.Add(newSimpleGoal);
 
-                            //Create an eternal goal
-                            EternalGoal newEternalGoal = new EternalGoal(name, description, points);
-                            _goals.Add(newEternalGoal);
+                break;
+            case 2:
+                //Get input
+                Console.WriteLine("What is the name of your goal?");
+                name = Console.ReadLine();
+                Console.WriteLine("What is a short description of it?");
+                description = Console.ReadLine();
+                Console.WriteLine("How many points is it worth?");
+                points = int.Parse(Console.ReadLine());
 
-                            break;
-                        case 3:
-                            //Get input
-                            Console.WriteLine("What is the name of your goal?");
-                            name = Console.ReadLine();
-                            Console.WriteLine("What is a short description of it?");
-                            description = Console.ReadLine();
-                            Console.WriteLine("How many points is it worth?");
-                            points = int.Parse(Console.ReadLine());
-                            Console.WriteLine("How many times will you repeat it?");
-                            int target = int.Parse(Console.ReadLine());
-                            Console.WriteLine("What is the completion bonus?");
-                            int bonus = int.Parse(Console.ReadLine());
+                //Create an eternal goal
+                EternalGoal newEternalGoal = new EternalGoal(name, description, points);
+                _goals.Add(newEternalGoal);
 
-                            //Create a checklist goal
-                            CheckListGoal newCheckListGoal = new CheckListGoal(name, description, points, target, bonus);
-                            _goals.Add(newCheckListGoal);
+                break;
+            case 3:
+                //Get input
+                Console.WriteLine("What is the name of your goal?");
+                name = Console.ReadLine();
+                Console.WriteLine("What is a short description of it?");
+                description = Console.ReadLine();
+                Console.WriteLine("How many points is it worth?");
+                points = int.Parse(Console.ReadLine());
+                Console.WriteLine("How many times will you repeat it?");
+                int target = int.Parse(Console.ReadLine());
+                Console.WriteLine("What is the completion bonus?");
+                int bonus = int.Parse(Console.ReadLine());
 
-                            break;
-                    }
+                //Create a checklist goal
+                CheckListGoal newCheckListGoal = new CheckListGoal(name, description, points, target, bonus);
+                _goals.Add(newCheckListGoal);
+
+                break;
+        }
     }
     public void RecordEvent()
     {
@@ -176,16 +167,16 @@ public class GoalManager
     public void SaveGoals()
     {
         Console.WriteLine("Please enter a file name: ");
-                    string fileName = Console.ReadLine();
+        string fileName = Console.ReadLine();
 
-                    using (StreamWriter outputFile = new StreamWriter(fileName))
-                    {
-                        foreach (Goal goal in _goals) 
-                        {
-                            outputFile.WriteLine(goal.GetStringRepresentation());
-                        }
-                        outputFile.WriteLine(_score);
-                    }
+        using (StreamWriter outputFile = new StreamWriter(fileName))
+        {
+            foreach (Goal goal in _goals)
+            {
+                outputFile.WriteLine(goal.GetStringRepresentation());
+            }
+            outputFile.WriteLine(_score);
+        }
     }
     public void LoadGoals()
     {
@@ -208,33 +199,36 @@ public class GoalManager
                     newSimpleGoal.RecordEvent();
                 }
                 _goals.Add(newSimpleGoal);
-            } else if (parts[0] == "EternalGoal")
+            }
+            else if (parts[0] == "EternalGoal")
             {
                 EternalGoal newEternalGoal = new EternalGoal(parts[1], parts[2], int.Parse(parts[3]));
                 _goals.Add(newEternalGoal);
-            } else if (parts[0] == "CheckListGoal")
+            }
+            else if (parts[0] == "CheckListGoal")
             {
                 CheckListGoal newCheckListGoal = new CheckListGoal(parts[1], parts[2], int.Parse(parts[3]), int.Parse(parts[4]), int.Parse(parts[5]));
                 newCheckListGoal.SetAmountCompleted(int.Parse(parts[6]));
                 _goals.Add(newCheckListGoal);
-            } else 
+            }
+            else
             {
                 _score = int.Parse(parts[0]);
             }
         }
     }
-    public string DetermineLevel(int score) 
+    public string DetermineLevel(int score)
     {
         string currentLevel = "";
 
-        foreach(Levels level in _levels)
+        foreach (Levels level in _levels)
         {
             if (score >= level.GetPointsRequired())
             {
                 currentLevel = level.GetName();
             }
         }
-        
+
         return currentLevel;
     }
 }
