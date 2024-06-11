@@ -1,0 +1,12 @@
+{
+  "version": 2,
+  "dgSpecHash": "OYtQJistXE47+IX4aD+XTC/AZ03fm2qlKNY8QSzVrX0l0I7wiY29Rs5fBe9In/KyDxqNrmNnnvAj+s5Iz2PEsA==",
+  "success": true,
+  "projectFilePath": "/Users/sandijunker/Library/Mobile Documents/com~apple~CloudDocs/Visual Studio Projects/cse270/Develop05/Develop05.csproj",
+  "expectedPackageFiles": [
+    "/Users/sandijunker/.nuget/packages/microsoft.netcore.app.ref/7.0.18/microsoft.netcore.app.ref.7.0.18.nupkg.sha512",
+    "/Users/sandijunker/.nuget/packages/microsoft.aspnetcore.app.ref/7.0.18/microsoft.aspnetcore.app.ref.7.0.18.nupkg.sha512",
+    "/Users/sandijunker/.nuget/packages/microsoft.netcore.app.host.osx-arm64/7.0.18/microsoft.netcore.app.host.osx-arm64.7.0.18.nupkg.sha512"
+  ],
+  "logs": []
+}
